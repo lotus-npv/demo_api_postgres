@@ -14,6 +14,7 @@ app.get('/users', async (req, res) => {
     try {
       const users = await db.select().from('users')
       res.json(users)
+      console.log(users)
     } catch (error) {
       console.error(error)
       res.status(500).json({ message: 'Error retrieving users' })
@@ -25,6 +26,7 @@ app.post('/users', async (req, res) => {
   try {
     const user = await db('users').insert({ name: req.body.name }).returning('*')
     res.json(user)
+    console.log(user)
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Error creating user' })
